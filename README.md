@@ -6,7 +6,7 @@ This is a planning and reporting aid, not a billing meter or enforced spending l
 
 ## Install
 
-Requires Python 3.9+ and macOS or Linux for the collector. No Python packages, API keys, or Node runtime are required. Clone access is required if the repository is private.
+Requires Python 3.9+ and macOS or Linux for the collector. No Python packages, API keys, or Node runtime are required. The repository is public and MIT licensed.
 
 ```sh
 git clone https://github.com/ezzye/codex-usage-budget.git
@@ -27,6 +27,27 @@ To request this behavior for every task on this installation:
 `--always` adds one managed block to the Codex home `AGENTS.md`, preserving other instructions. It authorizes bounded economical delegation and exempts extra planning when its overhead would equal or exceed direct work. It does not change your default model, create an automation, or configure other computers. Instructions cannot guarantee execution in every client or override higher-priority policies.
 
 Existing skill installations are backed up under `$CODEX_HOME/usage-budget-backups/` before replacement. This includes customized personal versions: review the backup before retiring it. To test elsewhere, use `./install.sh --codex-home /tmp/my-codex-test --always`. Re-running updates the skill without duplicating the managed instruction block.
+
+## Enable budgeting for every task
+
+The skill name is `codex-usage-budget`. Invoke it explicitly in Codex with `$codex-usage-budget`.
+
+| Scope | Instruction file |
+| --- | --- |
+| All Codex projects on this installation | `~/.codex/AGENTS.md` (or `$CODEX_HOME/AGENTS.md`) |
+| One Codex repository | `AGENTS.md` in that repository |
+| All Claude Code projects | `~/.claude/CLAUDE.md` |
+| One Claude Code repository | `CLAUDE.md` in that repository |
+
+Use `AGENTS.md` with the final **S**. For Codex, `./install.sh --always` adds the standing instruction automatically; no system-prompt change is needed. Start a new session after installation. If `AGENTS.override.md` exists in the Codex home, it takes precedence over the ordinary global file; add the instruction there instead if appropriate.
+
+A concise standing instruction is:
+
+> Before every task, read and apply the installed codex-usage-budget/SKILL.md. Reuse a valid project budget; otherwise budget the whole deliverable using the least-expensive-good-enough route. Skip extra planning or delegation when its overhead would equal or exceed the task cost. Preserve required verification and batch completion logging.
+
+Include the actual installed file path when placing this instruction in another agent's configuration. Claude Code can follow the planning guidance, but this package's installer, quota tools and usage collector target **Codex**. It does not measure Claude usage or install a native Claude skill. Cross-agent support requires an adapted collector and model/tool mapping; a CLAUDE.md entry alone does not provide those capabilities.
+
+Official references: [Codex AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md), [Claude Code CLAUDE.md](https://code.claude.com/docs/en/memory).
 
 ## Google Sheets setup
 
