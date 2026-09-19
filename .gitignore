@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+tracker.json
+data/
+outputs/
+node_modules/
+*.xlsx
+*.jsonl
+cache.json
+usage.json
+usage.csv
